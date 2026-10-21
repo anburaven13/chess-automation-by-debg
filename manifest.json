@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Chess Automation by debg",
+  "version": "1.0",
+  "description": "Chess Automation by debg - Automated board analysis, Stockfish moves, and gameplay.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://stockfish.online/*",
+    "https://tablebase.lichess.ovh/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Chess Automation by debg"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

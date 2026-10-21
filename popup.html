@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Automation by debg</title>
+  <style>
+    :root {
+      --text: #ffffff;
+      --accent: rgba(127, 166, 80, 0.8);
+      --accent-hover: rgba(127, 166, 80, 1);
+    }
+    
+    body { 
+      width: 320px; 
+      margin: 0; 
+      padding: 20px; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      /* Liquid Background Gradient */
+      background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism Base Class */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+    }
+
+    h3 { 
+      margin-top: 0; 
+      text-align: center; 
+      padding-bottom: 15px; 
+      font-size: 20px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .turn-selector { 
+      display: flex; 
+      justify-content: space-around; 
+      margin: 15px 0; 
+      padding: 12px; 
+    }
+    
+    label { 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      font-weight: 500; 
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .auto-play-container {
+      margin-bottom: 15px; 
+      padding: 12px; 
+      text-align: center;
+    }
+
+    .auto-play-container label {
+      display: inline-flex; 
+      color: #ffb8b8; 
+      font-weight: bold;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    button { 
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      color: #fff; 
+      font-weight: bold; 
+      font-size: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 14px; 
+      border-radius: 12px; 
+      width: 100%; 
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    button:hover { 
+      background: rgba(255, 255, 255, 0.25); 
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    button:disabled { 
+      background: rgba(0, 0, 0, 0.2); 
+      color: rgba(255, 255, 255, 0.5); 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: not-allowed; 
+      transform: none;
+    }
+    
+    .status-box {
+      margin-top: 15px;
+      padding: 15px;
+      text-align: center;
+      min-height: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h3 class="glass" style="border: none; background: transparent; box-shadow: none; backdrop-filter: none; margin-bottom: 0;">Chess Automation by debg</h3>
+  
+  <div class="turn-selector glass">
+    <label><input type="radio" name="turn" value="w" checked> Play as White</label>
+    <label><input type="radio" name="turn" value="b"> Play as Black</label>
+  </div>
+  
+  <div class="auto-play-container glass">
+    <label style="display: block; margin-bottom: 8px;">
+      <input type="checkbox" id="autoPlayToggle"> ENABLE AUTO-PLAY
+    </label>
+    <label style="display: block; font-size: 13px; color: #bde0fe; font-weight: 500; cursor: pointer;">
+      <input type="checkbox" id="syncClockToggle" checked> Match Opponent Time (Max +10s)
+    </label>
+  </div>
+  
+  <button id="playBtn" class="glass">Manual: Calculate & Play</button>
+  
+  <div class="status-box glass" id="status">
+    Ready. Select your color!
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
